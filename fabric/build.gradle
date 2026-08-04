@@ -1,0 +1,37 @@
+//RTMU-ATSAssistMod_1.21.1 (Fabric) — 本家 ATSAssistMod の移植。RTMU 本体に依存する別 jar。
+plugins {
+    id 'fabric-loom'
+    id 'java-library'
+}
+
+version = atsa_version
+group = 'jp.kaiz.atsassistmod'
+
+base {
+    archivesName = 'RTMU-ATSAssistMod_1.21.1-fabric'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    //本体と同じ mojmap。バニラ参照を書き換えずに済む
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    //RTMU 本体のクラス (EntityTrainBase / TrainState / net.neoforged シム) をコンパイル参照。
+    //実行時は mods フォルダの RTMU jar が提供する。
+    compileOnly rootProject
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = 'UTF-8'
+    it.options.release = 21
+}

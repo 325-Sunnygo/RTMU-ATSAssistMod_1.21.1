@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "atsassistmod",
+  "version": "${version}",
+  "name": "RTMU-ATSAssistMod",
+  "description": "本家 ATSAssistMod (jp.kaiz.atsassistmod / Kaiz_JP / GPL-3.0) の 1.21.1 移植。地上子・車上装置・保安装置 (ATC/TASC/ATO/ATS)。(RTMU 本体が必要です)",
+  "authors": ["Kaiz_JP"],
+  "contributors": ["325-Sunnygo (1.21.1 移植)"],
+  "license": "GPL-3.0-or-later",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["jp.kaiz.atsassistmod.fabric.AtsaFabricInit"],
+    "client": ["jp.kaiz.atsassistmod.fabric.AtsaFabricClientInit"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "realtrainmodunofficial": "*"
+  }
+}
